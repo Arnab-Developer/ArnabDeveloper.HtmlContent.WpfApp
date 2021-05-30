@@ -1,0 +1,18 @@
+﻿<Window x:Class="ArnabDeveloper.HtmlContent.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArnabDeveloper.HtmlContent.WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="500">
+    <StackPanel>
+        <Button Name="btnNormal" Content="Normal" Click="BtnNormal_Click" />
+        <Button Name="btnAsync" Content="Async" Click="BtnAsync_Click" />
+        <Button Name="btnParallel" Content="Parallel" Click="BtnParallel_Click" />
+        <Button Name="btnParallelV2" Content="ParallelV2" Click="BtnParallelV2_Click" />
+        <Button Name="btnParallelV2WithProgressBar" Content="ParallelV2WithProgressBar" Click="BtnParallelV2WithProgressBar_Click" />
+        <ProgressBar Name="prg" Height="20" />
+        <TextBlock Name="txtResult" />
+    </StackPanel>
+</Window>
