@@ -15,7 +15,7 @@ with `Parallel.ForEach()`
 in parallel with `Parallel.ForEach()` with progressbar and show result as they 
 are available
 
-![Screenshot](https://github.com/Arnab-Developer/ArnabDeveloper.HtmlContent.Wpf/blob/main/Assets/Screenshot.png)
+![Screenshot](https://github.com/Arnab-Developer/ArnabDeveloper.HtmlContent.WpfApp/blob/main/Assets/Screenshot.png)
 
 This is influenced by
 [C# Advanced Async by TimCorey](https://www.youtube.com/watch?v=ZTKGRJy5P2M)
