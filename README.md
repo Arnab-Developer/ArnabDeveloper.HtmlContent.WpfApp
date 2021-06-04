@@ -1,8 +1,6 @@
 # HTML content WPF
 
-A WPF app to show HTML response by using 
-[ArnabDeveloper.HtmlContent.Core](https://www.nuget.org/packages/ArnabDeveloper.HtmlContent.Core)
-NuGet package.
+A WPF app to show HTML responses.
 
 There are five methods to print the HTML responses.
 

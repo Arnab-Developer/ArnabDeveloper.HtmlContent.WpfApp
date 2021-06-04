@@ -1,4 +1,7 @@
 ﻿using ArnabDeveloper.HtmlContent.Core.Services;
+using ArnabDeveloper.HttpHealthCheck.DI;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows;
 
 namespace ArnabDeveloper.HtmlContent.WpfApp
@@ -12,7 +15,10 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            IHtmlContentService htmlContentService = new HtmlContentService();
+            IServiceCollection services = new ServiceCollection();
+            services.AddHtmlContentService();
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            IHtmlContentService htmlContentService = serviceProvider.GetRequiredService<IHtmlContentService>();
             _window = new(htmlContentService);
             _window.Show();
         }
