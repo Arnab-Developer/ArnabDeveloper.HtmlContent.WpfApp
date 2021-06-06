@@ -12,7 +12,7 @@ with `Parallel.ForEach()`
 - `BtnParallelV2WithProgressBar_Click()` to get HTML responses asynchronously 
 in parallel with `Parallel.ForEach()` with progressbar and show result as they 
 are available
-- `GetContentParallelAsyncV2WithAsyncStream()` use of async stream
+- `BtnParallelV2WithAsyncStream_Click()` use of async stream
 
 ![Screenshot](https://github.com/Arnab-Developer/ArnabDeveloper.HtmlContent.WpfApp/blob/main/Assets/Screenshot.png)
 
