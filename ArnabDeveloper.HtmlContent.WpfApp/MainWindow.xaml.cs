@@ -91,15 +91,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
 
         private async void BtnParallelV2WithAsyncStream_Click(object sender, RoutedEventArgs e)
         {
-            txtResult.Text = string.Empty;
-            Progress<ProgressDataModel> progress = new(progressDataModel =>
-            {
-                prg.Value = progressDataModel.ProgressValue;
-                if (progressDataModel.Data != null)
-                {
-                    txtResult.Text += $"{progressDataModel.Data.WebsiteUrl} {progressDataModel.Data.WebsiteData.Length}\n";
-                }
-            });
+            txtResult.Text = string.Empty;           
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             await foreach (ProgressDataModel progressDataModel 
