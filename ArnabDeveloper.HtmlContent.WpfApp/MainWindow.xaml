@@ -12,6 +12,7 @@
         <Button Name="btnParallel" Content="Parallel" Click="BtnParallel_Click" />
         <Button Name="btnParallelV2" Content="ParallelV2" Click="BtnParallelV2_Click" />
         <Button Name="btnParallelV2WithProgressBar" Content="ParallelV2WithProgressBar" Click="BtnParallelV2WithProgressBar_Click" />
+        <Button Name="btnParallelV2WithAsyncStream" Content="ParallelV2WithAsyncStream" Click="BtnParallelV2WithAsyncStream_Click" />
         <ProgressBar Name="prg" Height="20" />
         <TextBlock Name="txtResult" />
     </StackPanel>

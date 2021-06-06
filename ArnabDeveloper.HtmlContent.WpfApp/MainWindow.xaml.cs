@@ -89,6 +89,33 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
+        private async void BtnParallelV2WithAsyncStream_Click(object sender, RoutedEventArgs e)
+        {
+            txtResult.Text = string.Empty;
+            Progress<ProgressDataModel> progress = new(progressDataModel =>
+            {
+                prg.Value = progressDataModel.ProgressValue;
+                if (progressDataModel.Data != null)
+                {
+                    txtResult.Text += $"{progressDataModel.Data.WebsiteUrl} {progressDataModel.Data.WebsiteData.Length}\n";
+                }
+            });
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            await foreach (ProgressDataModel progressDataModel 
+                in _htmlContentService.GetContentParallelAsyncV2WithAsyncStream())
+            {
+                prg.Value = progressDataModel.ProgressValue;
+                if (progressDataModel.Data != null)
+                {
+                    txtResult.Text += $"{progressDataModel.Data.WebsiteUrl} {progressDataModel.Data.WebsiteData.Length}\n";
+                }
+            }
+            stopwatch.Stop();
+
+            txtResult.Text += stopwatch.ElapsedMilliseconds;
+        }
+
         private void AddUrls()
         {
             _htmlContentService.Urls.Add("http://google.com");
