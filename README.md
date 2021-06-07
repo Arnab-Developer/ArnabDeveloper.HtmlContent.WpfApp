@@ -4,15 +4,16 @@ A WPF app to show HTML responses.
 
 There are five methods to print the HTML responses.
 
-- `BtnNormal_Click()` to get HTML responses synchronously
-- `BtnAsync_Click()` to get HTML responses asynchronously
-- `BtnParallel_Click` to get HTML responses asynchronously in parallel
-- `BtnParallelV2_Click()` to get HTML responses asynchronously in parallel 
-with `Parallel.ForEach()`
-- `BtnParallelV2WithProgressBar_Click()` to get HTML responses asynchronously 
-in parallel with `Parallel.ForEach()` with progressbar and show result as they 
-are available
-- `BtnParallelV2WithAsyncStream_Click()` use of async stream
+- `BtnGetContent_Click()` get html contents synchronously
+- `BtnGetContentAsync_Click()` get html contents asynchronously
+- `BtnGetContentAsyncStream_Click()` get html contents asynchronously but start to return 
+contents as they are ready before all are complete
+- `BtnGetContentParallelAsync_Click()` get html contents asynchronously in parallel
+- `BtnGetContentParallelForEachAsync_Click()` get html contents asynchronously in parallel 
+using `Parallel.ForEach()`
+- `BtnGetContentParallelForEachProgressAsync_Click()` get html contents asynchronously in 
+parallel using `Parallel.ForEach()` and start to return contents as they are ready 
+before all are complete with progress data.
 
 ![Screenshot](https://github.com/Arnab-Developer/ArnabDeveloper.HtmlContent.WpfApp/blob/main/Assets/Screenshot.png)
 
