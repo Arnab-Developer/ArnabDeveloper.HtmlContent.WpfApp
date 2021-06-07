@@ -7,9 +7,6 @@ using System.Windows;
 
 namespace ArnabDeveloper.HtmlContent.WpfApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly IHtmlContentService _htmlContentService;
@@ -21,7 +18,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             AddUrls();
         }
 
-        private void BtnNormal_Click(object sender, RoutedEventArgs e)
+        private void BtnGetContent_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -33,7 +30,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnAsync_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -45,7 +42,26 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallel_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentAsyncStream_Click(object sender, RoutedEventArgs e)
+        {
+            txtResult.Text = string.Empty;
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            await foreach (ProgressDataModel progressDataModel
+                in _htmlContentService.GetContentAsyncStream())
+            {
+                prg.Value = progressDataModel.ProgressValue;
+                if (progressDataModel.Data != null)
+                {
+                    txtResult.Text += $"{progressDataModel.Data.WebsiteUrl} {progressDataModel.Data.WebsiteData.Length}\n";
+                }
+            }
+            stopwatch.Stop();
+
+            txtResult.Text += stopwatch.ElapsedMilliseconds;
+        }
+
+        private async void BtnGetContentParallelAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -57,19 +73,20 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallelV2_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentParallelForEachAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            IEnumerable<WebSiteDataModel> webSiteDataModels = await _htmlContentService.GetContentParallelAsyncV2();
+            IEnumerable<WebSiteDataModel> webSiteDataModels = await _htmlContentService
+                .GetContentParallelForEachAsync();
             stopwatch.Stop();
 
             PrintData(webSiteDataModels);
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallelV2WithProgressBar_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentParallelForEachProgressAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
             Progress<ProgressDataModel> progress = new(progressDataModel =>
@@ -82,27 +99,8 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             });
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            IEnumerable<WebSiteDataModel> webSiteDataModels
-                = await _htmlContentService.GetContentParallelAsyncV2WithProgress(progress);
-            stopwatch.Stop();
-
-            txtResult.Text += stopwatch.ElapsedMilliseconds;
-        }
-
-        private async void BtnParallelV2WithAsyncStream_Click(object sender, RoutedEventArgs e)
-        {
-            txtResult.Text = string.Empty;           
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            await foreach (ProgressDataModel progressDataModel 
-                in _htmlContentService.GetContentParallelAsyncV2WithAsyncStream())
-            {
-                prg.Value = progressDataModel.ProgressValue;
-                if (progressDataModel.Data != null)
-                {
-                    txtResult.Text += $"{progressDataModel.Data.WebsiteUrl} {progressDataModel.Data.WebsiteData.Length}\n";
-                }
-            }
+            IEnumerable<WebSiteDataModel> webSiteDataModels = await _htmlContentService
+                .GetContentParallelForEachProgressAsync(progress);
             stopwatch.Stop();
 
             txtResult.Text += stopwatch.ElapsedMilliseconds;
