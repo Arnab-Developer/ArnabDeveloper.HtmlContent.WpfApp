@@ -7,9 +7,6 @@ using System.Windows;
 
 namespace ArnabDeveloper.HtmlContent.WpfApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly IHtmlContentService _htmlContentService;
@@ -21,7 +18,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             AddUrls();
         }
 
-        private void BtnNormal_Click(object sender, RoutedEventArgs e)
+        private void BtnGetContent_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -33,7 +30,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnAsync_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -45,7 +42,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallelV2WithAsyncStream_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentAsyncStream_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -64,7 +61,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallel_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentParallelAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -76,7 +73,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallelV2_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentParallelForEachAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
 
@@ -89,7 +86,7 @@ namespace ArnabDeveloper.HtmlContent.WpfApp
             txtResult.Text += stopwatch.ElapsedMilliseconds;
         }
 
-        private async void BtnParallelV2WithProgressBar_Click(object sender, RoutedEventArgs e)
+        private async void BtnGetContentParallelForEachProgressAsync_Click(object sender, RoutedEventArgs e)
         {
             txtResult.Text = string.Empty;
             Progress<ProgressDataModel> progress = new(progressDataModel =>
