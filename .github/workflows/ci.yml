@@ -8,7 +8,7 @@ on:
     
 jobs:
   build:    
-    runs-on: windows-latest   
+    runs-on: windows-latest
     name: Build
     steps:
     - name: Checkout code
@@ -21,3 +21,23 @@ jobs:
         
     - name: Build
       run: dotnet build --configuration Release
+
+  codeql-analysis:    
+    name: CodeQL analysis
+    runs-on: windows-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: csharp
+        
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v1
+        
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
