@@ -36,7 +36,7 @@ jobs:
         with:
           languages: csharp
         
-      - name: Autobuild
+      - name: Autobuild 
         uses: github/codeql-action/autobuild@v1
         
       - name: Perform CodeQL Analysis
